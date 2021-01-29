@@ -298,10 +298,10 @@ class GeoNodeSerializer(object):
 
                     serializer.validated_data['id'] = map_obj.id
                     serializer.save(user=caller.request.user)
-            except Exception:
+            except Exception as e:
                 tb = traceback.format_exc()
                 logger.error(tb)
-                raise APIException(tb)
+                raise APIException(e)
         else:
             raise APIException("Map Configuration (data) is Mandatory!")
 
